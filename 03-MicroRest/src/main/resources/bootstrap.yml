@@ -1,0 +1,14 @@
+
+spring:
+   cloud:
+      config:
+         uri: http://localhost:8081
+   application:
+      name: micro1
+
+
+
+eureka: 
+  client:
+     serviceUrl:
+        defaultZone: http://localhost:8082/eureka/
