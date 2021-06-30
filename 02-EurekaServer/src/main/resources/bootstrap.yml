@@ -13,4 +13,4 @@ eureka:
     fetchRegistry: false
   server:
     #wait time for subsequent sync
-    waitTimeInMsWhenSyncEmpty: 0
+    waitTimeInMsWhenSyncEmpty: 1

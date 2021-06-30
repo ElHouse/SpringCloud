@@ -1,12 +1,6 @@
 server:
-   port: 8083
+   port: 8085
 
 spring:
-   application:
-      name: gateway
-   gateway : 
-     routes:
-       - predicates: 
-          - path=/**
-         uri: "lb:micro1/"
-
+  application:
+    name: gateway

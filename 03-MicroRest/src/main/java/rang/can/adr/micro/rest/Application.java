@@ -27,14 +27,14 @@ public class Application {
 	        new Book(2L, "Baeldung goes to the park", "Slavisa")
 	    );
 
-	    @GetMapping("")
+	    @GetMapping("/")
 	    public List<Book> findAllBooks() {
 	        return bookList;
 	    }
 
-	    @GetMapping("/{bookId}")
-	    public Book findBook(@PathVariable Long bookId) {
-	        return bookList.stream().filter(b -> b.getId().equals(bookId)).findFirst().orElse(null);
-	    }
+//	    @GetMapping("/{bookId}")
+//	    public Book findBook(@PathVariable Long bookId) {
+//	        return bookList.stream().filter(b -> b.getId().equals(bookId)).findFirst().orElse(null);
+//	    }
 }
 
