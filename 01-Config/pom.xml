@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ran.can.adr.config</groupId>
-	<artifactId>Config</artifactId>
+	<artifactId>01-Config</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>02-Config</name>
+	<name>01-Config</name>
 	<description>Config  project</description>
 	<properties>
 		<java.version>11</java.version>
