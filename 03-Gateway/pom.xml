@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ran.can.adr.gateway</groupId>
-	<artifactId>Gateway</artifactId>
+	<artifactId>03-Gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>03-Gateway</name>
 	<description>Gateway  project</description>
