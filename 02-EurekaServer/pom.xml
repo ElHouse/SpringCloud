@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ran.can.adr.discovery</groupId>
-	<artifactId>EurekaServer</artifactId>
+	<artifactId>02-EurekaServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>02-EurekaServer</name>
 	<description>EurekaServer  project</description>
