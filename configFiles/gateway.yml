@@ -8,5 +8,5 @@ spring:
      routes:
        - predicates: 
           - path=/**
-         uri: "lb:service/"
+         uri: "lb:micro1/"
 
