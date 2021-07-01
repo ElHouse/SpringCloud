@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,13 +29,21 @@ public class Application {
 	    );
 
 	    @GetMapping("/")
-	    public List<Book> findAllBooks() {
+	    public List<Book> findAllBooks( 
+	    		@RequestHeader("libro-request") String header,
+
+	    		@RequestHeader("Authorization") String Authorization
+	    		) {
+	    	
+	    	System.out.println(header);
+	    	System.out.println(Authorization);
+
 	        return bookList;
 	    }
 
-//	    @GetMapping("/{bookId}")
-//	    public Book findBook(@PathVariable Long bookId) {
-//	        return bookList.stream().filter(b -> b.getId().equals(bookId)).findFirst().orElse(null);
-//	    }
+	    @GetMapping("/{bookId}")
+	    public Book findBook(@PathVariable Long bookId) {
+	        return bookList.stream().filter(b -> b.getId().equals(bookId)).findFirst().orElse(null);
+	    }
 }
 
