@@ -4,9 +4,10 @@ spring:
       config:
          uri: http://localhost:8081
    application:
-      name: micro1
+      name: micro2
    zipkin:
      enabled: false
+
 
 
 eureka: 

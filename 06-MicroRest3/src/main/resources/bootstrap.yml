@@ -4,7 +4,7 @@ spring:
       config:
          uri: http://localhost:8081
    application:
-      name: micro1
+      name: micro3
    zipkin:
      enabled: false
 

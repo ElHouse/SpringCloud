@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ran.can.adr.micro.rest</groupId>
-	<artifactId>04-MicroRest</artifactId>
+	<artifactId>06-MicroRest3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>04-MicroRest</name>
+	<name>06-MicroRest3</name>
 	<description>Gateway  project</description>
 	<properties>
 		<java.version>11</java.version>
