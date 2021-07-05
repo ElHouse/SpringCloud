@@ -1,4 +1,3 @@
-
 spring:
    cloud:
       config:
@@ -6,11 +5,3 @@ spring:
    application:
       name: discovery
 
-eureka:
-  client:
-    #telling the server not to register himself in the service registry
-    registerWithEureka: false
-    fetchRegistry: false
-  server:
-    #wait time for subsequent sync
-    waitTimeInMsWhenSyncEmpty: 1

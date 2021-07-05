@@ -1,44 +1,9 @@
-
-hystrix:
-  command: 
-    fallbackcmd:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 200
-  metrics:
-    polling-interval-ms: 100
-          
 #hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 2000
+        
+spring:
+   cloud:
+      config:
+         uri: http://localhost:8081
+   application:
+      name: gateway
 
-spring:   
-  cloud:
-  #  config:
-   #   uri: http://localhost:8081
-     gateway:
-       default-filters:      
-        - name: CustomFilter
-       routes:
-       - id: libros
-         uri: lb://MICRO1
-         predicates:
-         - Path=/libros/**
-         filters:
-         - RewritePath=/libros/(?<segment>.*), /books/$\{segment}
-         - AddRequestHeader=libro-request, libro-request-header
-         - AddResponseHeader=book-response, book-response-header
-         - name: Hystrix
-           args:
-            name: fallbackCommand
-            fallbackUri: forward:/fallback/MICRO1
-         - name: AccountPreFilter
-  application:
-    name: gateway
-
-server:
-   port: 8083
-
-eureka: 
-  client:
-     serviceUrl:
-        defaultZone: http://localhost:8082/eureka/

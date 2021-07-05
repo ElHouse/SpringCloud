@@ -1,18 +1,10 @@
-
+   
+     
+     
 spring:
    cloud:
       config:
          uri: http://localhost:8081
    application:
       name: micro2
-   zipkin:
-     enabled: false
-
-
-
-eureka: 
-  client:
-     serviceUrl:
-        defaultZone: http://localhost:8082/eureka/
-        
-        
+   

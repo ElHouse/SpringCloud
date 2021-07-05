@@ -3,6 +3,7 @@ package rang.can.adr.micro.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -29,6 +30,7 @@ public class Application {
 	RestTemplate restTemplate;
 
 	@Bean
+	@LoadBalanced
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
@@ -41,7 +43,7 @@ public class Application {
 	@GetMapping(value = "/microservice2")
 	public String method2() {
 		log.info("Inside method2");
-		String baseUrl = "http://MICRO3/microservice3";
+		String baseUrl = "http://MICRO3/books/microservice3";
 		String response = (String) restTemplate.exchange(baseUrl, HttpMethod.GET, null, String.class).getBody();
 		log.info("The response received by method2 is " + response);
 		return response;

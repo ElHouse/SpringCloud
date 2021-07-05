@@ -5,13 +5,4 @@ spring:
          uri: http://localhost:8081
    application:
       name: micro1
-   zipkin:
-     enabled: false
-
-
-eureka: 
-  client:
-     serviceUrl:
-        defaultZone: http://localhost:8082/eureka/
-        
-        
+   

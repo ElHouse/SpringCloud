@@ -1,0 +1,43 @@
+eureka:
+    client:
+        fetch-registry: false
+        register-with-eureka: false
+        serviceUrl:
+            defaultZone: http://localhost:8082/eureka/
+    instance:
+        hostname: localhost
+    server:
+      #wait time for subsequent sync
+      waitTimeInMsWhenSyncEmpty: 1 
+      
+server:
+    port: 8082   
+    
+spring:
+    application:
+        name: discovery
+    boot: 
+      admin:
+        client:
+          url: http://localhost:8080
+          instance:
+            metadata:
+              user:
+                name: ${spring.security.user.name}
+                password: ${spring.security.user.password}
+          password: admin
+          username: admin
+    security:
+      user:
+        name: client
+        password: client
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+   health:
+     show-details: always
+     
