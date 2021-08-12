@@ -15,8 +15,6 @@ spring:
         password: admin
         username: admin
   cloud:
-  #  config:
-   #   uri: http://localhost:8081
      gateway:
        default-filters:      
         - name: CustomFilter
@@ -34,6 +32,12 @@ spring:
             name: fallbackCommand
             fallbackUri: forward:/fallback/MICRO1
          - name: AccountPreFilter
+       - id: admin
+         uri: http://localhost:8080/
+         predicates:
+         - Path=/ad/**
+         filters:
+         - RewritePath=/ad/(?<segment>.*), /$\{segment} 
   application:
     name: gateway
   security:

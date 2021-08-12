@@ -1,9 +1,84 @@
 #hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 2000
         
-spring:
-   cloud:
-      config:
-         uri: http://localhost:8081
-   application:
-      name: gateway
+#spring:
+ #  cloud:
+  #    config:
+   #      uri: http://localhost:8081
+   #application:
+    #  name: gateway
 
+
+
+server:
+   port: 8084
+  
+ 
+spring:   
+  boot: 
+    admin:
+      client:
+        url: http://localhost:8080
+        instance:
+           metadata:
+             user:
+               name: ${spring.security.user.name}
+               password: ${spring.security.user.password}
+        password: admin
+        username: admin
+  cloud:
+
+     gateway:
+       default-filters:      
+        - name: CustomFilter
+       routes:
+       - id: libros
+         uri: lb://MICRO1
+         predicates:
+         - Path=/libros/**
+         filters:
+         - RewritePath=/libros/(?<segment>.*), /books/$\{segment}
+         - AddRequestHeader=libro-request, libro-request-header
+         - AddResponseHeader=book-response, book-response-header
+         - name: Hystrix
+           args:
+            name: fallbackCommand
+            fallbackUri: forward:/fallback/MICRO1
+         - name: AccountPreFilter
+       - id: admin
+         uri: http://localhost:8080/
+         predicates:
+         - Path=/ad/**
+         filters:
+         - RewritePath=/ad/(?<segment>.*), /$\{segment} 
+  application:
+    name: gateway
+  security:
+    user:
+      name: client
+      password: client    
+
+    
+eureka: 
+  client:
+     serviceUrl:
+        defaultZone: http://localhost:8082/eureka/
+    
+hystrix:
+  command: 
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 200
+  metrics:
+    polling-interval-ms: 100
+
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+   health:
+     show-details: always

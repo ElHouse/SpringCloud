@@ -5,4 +5,8 @@ spring:
          uri: http://localhost:8081
    application:
       name: micro1
-   
+  
+  
+eureka:
+  instance:
+    instance-id: ${random.value}:${spring.application.name}

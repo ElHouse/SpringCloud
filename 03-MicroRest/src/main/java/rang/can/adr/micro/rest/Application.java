@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.cloud.client.circuitbreaker.ConfigBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +37,10 @@ public class Application {
 	@Autowired
 	RestTemplate restTemplate;
 
+	@Autowired
+//	CircuitBreakerFactory factory;
+	CircuitBreakerFactory<Resilence4Config, ConfigBuilder<Resilence4Config>> factory;
+	
 	@Bean
 	@LoadBalanced
 	public RestTemplate getRestTemplate() {
@@ -72,9 +79,13 @@ public class Application {
 	public String method1() {
 		log.info("Inside method1");
 		String baseUrl = "http://MICRO2/books/microservice2";
-		String response = (String) restTemplate.exchange(baseUrl, HttpMethod.GET, null, String.class).getBody();
-		log.info("The response received by method1 is " + response);
-		return response;
+				
+		CircuitBreaker circuit = factory.create("circuit1");
+		return circuit.run(()->  restTemplate.exchange(baseUrl, HttpMethod.GET, null, String.class).getBody(), t-> "UPsi error circuit");
+		
+//		String response = (String) restTemplate.exchange(baseUrl, HttpMethod.GET, null, String.class).getBody();
+//		log.info("The response received by method1 is " + response);
+//		return response;
 	}
 }
 
